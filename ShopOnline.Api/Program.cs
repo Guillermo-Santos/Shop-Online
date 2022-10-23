@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using ShopOnline.Api.Data;
 using ShopOnline.Api.Repositories;
 using ShopOnline.Api.Repositories.Contracts;
@@ -25,6 +26,16 @@ namespace ShopOnline.Api
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
+            builder.Services.AddCors(policy =>
+            {
+                policy.AddPolicy("_myAllowSpecificOrigins", builder =>
+                 builder.WithOrigins("https://localhost:7174/")
+                .SetIsOriginAllowed((host) => true) // this for using localhost address
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -33,7 +44,8 @@ namespace ShopOnline.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            
+            app.UseCors("_myAllowSpecificOrigins");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

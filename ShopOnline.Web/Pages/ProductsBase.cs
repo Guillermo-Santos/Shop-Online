@@ -9,9 +9,9 @@ namespace ShopOnline.Web.Pages
         [Inject]
         public IProductService ProductService { get; set; }
         public IEnumerable<ProductDto> Products { get; set; }
-        protected override Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
-            return base.OnInitializedAsync();
+            Products = await ProductService.GetProducts();
         }
     }
 }
