@@ -1,0 +1,70 @@
+version: '3.4'
+
+networks:
+  cluster-network:
+    driver: bridge
+volumes:
+    sqlvolume:
+    rnode1:
+    rnode2:
+services:
+  shoponline.api:
+    image: ${DOCKER_REGISTRY-}shoponlineapi
+    build:
+      context: .
+      dockerfile: ShopOnline.Api/Dockerfile
+    networks:
+        - cluster-network
+    ports:
+        - "49456:443"
+        - "49455:80"
+    depends_on:
+        - sqldb
+  sqldb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+        - SA_PASSWORD=2Secure*Password2
+        - ACCEPT_EULA=Y
+    networks:
+        - cluster-network
+    hostname: sqldb
+    volumes:
+        - sqlvolume:/var/opt/mssql
+    ports:
+        - "1440:1433"
+  rabbitmqnode1:
+    image: rabbitmq:3-management
+    container_name: 'RabbitMQ-Server-1'
+    networks:
+        - cluster-network
+    hostname: rabbitmqnode1
+    volumes:
+     - rnode1:/var/lib/rabbitmq
+    ports:
+        - "4369:4369"
+        - "5672:5672"
+        - "15672:15672"
+        - "25672:25672"
+        - "35672:35672"
+    environment:
+        - RABBITMQ_ERLANG_COOKIE=cluster_cookie
+        - RABBITMQ_DEFAULT_USER=admin
+        - RABBITMQ_DEFAULT_PASS=admin
+  rabbitmqnode2:
+    image: rabbitmq:3-management
+    container_name: 'RabbitMQ-Server-2'
+    hostname: rabbitmqnode2
+    networks:
+        - cluster-network
+    volumes:
+     - rnode2:/var/lib/rabbitmq
+    environment:
+        - RABBITMQ_ERLANG_COOKIE=cluster_cookie
+        - RABBITMQ_DEFAULT_USER=admin
+        - RABBITMQ_DEFAULT_PASS=admin
+    ports:
+        - "4370:4369"
+        - "5673:5672"
+        - "15673:15672"
+        - "25673:25672"
+        - "35673:35672"

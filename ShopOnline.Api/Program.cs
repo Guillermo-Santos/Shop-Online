@@ -3,6 +3,8 @@ using Microsoft.Net.Http.Headers;
 using ShopOnline.Api.Data;
 using ShopOnline.Api.Repositories;
 using ShopOnline.Api.Repositories.Contracts;
+using ShopOnline.Api.Services;
+using ShopOnline.Api.Services.Contracts;
 
 namespace ShopOnline.Api
 {
@@ -20,10 +22,12 @@ namespace ShopOnline.Api
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContextPool<ShopOnlineDbContext>(
-                    options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShopOnlineConnection"))
+                    options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShopOnlineConnection")!)
             );
-
+            var RabbitMQProducer = new RabbitMQProducer();
+            builder.Services.AddSingleton<IMessageProducer>(RabbitMQProducer);
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
 
             builder.Services.AddCors(policy =>

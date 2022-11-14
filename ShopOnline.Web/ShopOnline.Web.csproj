@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\DisplayProducts.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
   </ItemGroup>
@@ -29,10 +25,6 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\DisplayProducts.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\DisplayProducts.razor" />
   </ItemGroup>
 
 </Project>

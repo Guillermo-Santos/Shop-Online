@@ -21,19 +21,19 @@ namespace ShopOnline.Api.Repositories
 
         public async Task<Product> GetProductById(int id)
         {
-            var product = await dbContext.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
+            var product = await dbContext.Products.FindAsync(id);
             return product;
         }
 
         public async Task<ProductCategory> GetProductCategoryById(int id)
         {
-            var category = await dbContext.ProductCategories.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var category = await dbContext.ProductCategories.FindAsync(id);
             return category;
         }
 
         public async Task<IEnumerable<Product>> GetProducts()
         {
-            var products = await this.dbContext.Products.ToListAsync();
+            var products = await dbContext.Products.ToListAsync();
             return products;
         }
     }

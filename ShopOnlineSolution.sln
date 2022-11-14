@@ -3,11 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Web", "ShopOnline.Web\ShopOnline.Web.csproj", "{3AE9B407-7553-4C71-ACD1-4E3FEB310B18}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Api", "ShopOnline.Api\ShopOnline.Api.csproj", "{52D975D8-34B6-4D72-BF9F-B03B631F6B0F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Models", "ShopOnline.Models\ShopOnline.Models.csproj", "{AACE097E-35EA-486C-B4B3-3B9361871919}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.CartReader", "ShopOnline.CartReader\ShopOnline.CartReader.csproj", "{6B2BF8C0-E5DB-4474-BE62-455CCCE30EC9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5} = {3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5}
+		{52D975D8-34B6-4D72-BF9F-B03B631F6B0F} = {52D975D8-34B6-4D72-BF9F-B03B631F6B0F}
+		{AACE097E-35EA-486C-B4B3-3B9361871919} = {AACE097E-35EA-486C-B4B3-3B9361871919}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Web", "ShopOnline.Web\ShopOnline.Web.csproj", "{A2830E64-5174-479E-8943-B44426AC8903}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5} = {3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5}
+		{52D975D8-34B6-4D72-BF9F-B03B631F6B0F} = {52D975D8-34B6-4D72-BF9F-B03B631F6B0F}
+		{6B2BF8C0-E5DB-4474-BE62-455CCCE30EC9} = {6B2BF8C0-E5DB-4474-BE62-455CCCE30EC9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3AE9B407-7553-4C71-ACD1-4E3FEB310B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3AE9B407-7553-4C71-ACD1-4E3FEB310B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3AE9B407-7553-4C71-ACD1-4E3FEB310B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3AE9B407-7553-4C71-ACD1-4E3FEB310B18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{52D975D8-34B6-4D72-BF9F-B03B631F6B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{52D975D8-34B6-4D72-BF9F-B03B631F6B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52D975D8-34B6-4D72-BF9F-B03B631F6B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +37,18 @@ Global
 		{AACE097E-35EA-486C-B4B3-3B9361871919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AACE097E-35EA-486C-B4B3-3B9361871919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AACE097E-35EA-486C-B4B3-3B9361871919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED1AAC0-F1C8-490C-B3A1-D76D22C469D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B2BF8C0-E5DB-4474-BE62-455CCCE30EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2BF8C0-E5DB-4474-BE62-455CCCE30EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2BF8C0-E5DB-4474-BE62-455CCCE30EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2BF8C0-E5DB-4474-BE62-455CCCE30EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2830E64-5174-479E-8943-B44426AC8903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2830E64-5174-479E-8943-B44426AC8903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2830E64-5174-479E-8943-B44426AC8903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2830E64-5174-479E-8943-B44426AC8903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

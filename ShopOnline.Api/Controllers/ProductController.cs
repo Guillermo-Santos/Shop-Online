@@ -37,5 +37,27 @@ namespace ShopOnline.Api.Controllers
                     "Error retrieving data from the database");
             }
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
+        {
+            try
+            {
+                var product = await productRepository.GetProductById(id);
+                
+                if (product == null)
+                {
+                    return BadRequest();
+                }
+                var productCategory = await productRepository.GetProductCategoryById(product.CategoryId);
+
+                return Ok(product.ConvertToDto(productCategory));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
     }
 }
