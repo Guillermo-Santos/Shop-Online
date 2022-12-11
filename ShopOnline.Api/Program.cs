@@ -24,8 +24,6 @@ namespace ShopOnline.Api
             builder.Services.AddDbContextPool<ShopOnlineDbContext>(
                     options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShopOnlineConnection")!)
             );
-            var RabbitMQProducer = new RabbitMQProducer();
-            builder.Services.AddSingleton<IMessageProducer>(RabbitMQProducer);
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 

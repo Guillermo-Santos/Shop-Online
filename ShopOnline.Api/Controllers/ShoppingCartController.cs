@@ -12,13 +12,11 @@ namespace ShopOnline.Api.Controllers
     {
         private readonly IShoppingCartRepository cartRepository;
         private readonly IProductRepository productRepository;
-        private readonly IMessageProducer messageProducer;
 
-        public ShoppingCartController(IShoppingCartRepository cartRepository, IProductRepository productRepository, IMessageProducer messageProducer)
+        public ShoppingCartController(IShoppingCartRepository cartRepository, IProductRepository productRepository)
         {
             this.cartRepository = cartRepository;
             this.productRepository = productRepository;
-            this.messageProducer = messageProducer;
         }
 
         [HttpGet]
@@ -94,7 +92,6 @@ namespace ShopOnline.Api.Controllers
                 }
 
                 var newCartItemDto = newCartItem.ConvertToDto(product);
-                messageProducer.SendMessage(newCartItemDto);
                 return CreatedAtAction(nameof(GetItem), new { id = newCartItem.Id }, newCartItemDto);
             }
             catch (Exception ex)

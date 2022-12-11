@@ -59,5 +59,22 @@ namespace ShopOnline.Api.Controllers
                     "Error retrieving data from the database");
             }
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<ProductDto>> DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ProductDto>> AddItem([FromBody] ProductDto item)
+        {
+            throw new NotImplementedException();
+        }
+        [HttpPut]
+        public async Task<ActionResult<ProductDto>> UpdateItem([FromBody] ProductDto item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

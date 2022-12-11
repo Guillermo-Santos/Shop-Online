@@ -37,5 +37,5 @@ static void SetConsoleHeader()
 {
     Console.Clear();
     Console.WriteLine("Hello to shop online Cart Reader!");
-    Console.WriteLine("\nHere you will fine the log of new items added to carts a real time!");
+    Console.WriteLine("\nHere you will find the log of new items added to carts a real time!");
 }
