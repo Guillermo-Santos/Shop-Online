@@ -7,7 +7,7 @@ namespace ShopOnline.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public sealed class ProductController : ControllerBase
     {
         private readonly IProductRepository productRepository;
 

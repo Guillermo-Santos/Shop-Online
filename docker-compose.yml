@@ -5,9 +5,21 @@ networks:
     driver: bridge
 volumes:
     sqlvolume:
-    rnode1:
-    rnode2:
+    web:
 services:
+  shoponline.webserver:
+    image: ${DOCKER_REGISTRY-}shoponlinewebserver
+    build:
+      context: .
+      dockerfile: ShopOnline.WebServer/Dockerfile
+    networks:
+        - cluster-network
+    hostname: shoponline.webserver
+    ports:
+        - "43331:80"
+        - "43330:443"
+    depends_on:
+        - shoponline.api
   shoponline.api:
     image: ${DOCKER_REGISTRY-}shoponlineapi
     build:
@@ -15,9 +27,10 @@ services:
       dockerfile: ShopOnline.Api/Dockerfile
     networks:
         - cluster-network
+    hostname: shoponline.api
     ports:
-        - "49456:443"
-        - "49455:80"
+        - "43332:443"
+        - "43333:80"
     depends_on:
         - sqldb
   sqldb:
